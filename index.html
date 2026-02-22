@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estado de la Casa — OAJNU 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --naranja:      #E8621A;
+  --naranja-mid:  #ED7C3A;
+  --naranja-light:#FDF0E8;
+  --cian:         #00C2C7;
+  --cian-light:   #E0FAFA;
+  --oscuro:       #1A1A1A;
+  --gris-bg:      #F7F7F7;
+  --gris-bdr:     #E2E2E2;
+  --gris-text:    #888;
+  --texto:        #1A1A1A;
+  --blanco:       #FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body {
+  background: var(--gris-bg);
+  color: var(--texto);
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+nav {
+  background: var(--oscuro);
+  padding: 0 40px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: var(--blanco);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo span {
+  background: var(--naranja);
+  color: var(--blanco);
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 20px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.nav-subtitle {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--naranja);
+  padding: 48px 40px 44px;
+  color: var(--blanco);
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -60px; top: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  pointer-events: none;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  right: 100px; bottom: -80px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(0,194,199,0.15);
+  pointer-events: none;
+}
+.hero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  color: var(--blanco);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 2.4rem;
+  line-height: 1.1;
+  color: var(--blanco);
+  margin-bottom: 10px;
+}
+.hero h1 em { font-style: normal; color: var(--cian); }
+.hero-sub {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.75);
+  max-width: 520px;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+.hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+.hstat { display: flex; flex-direction: column; gap: 2px; }
+.hstat-n { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.8rem; color: var(--blanco); line-height: 1; }
+.hstat-l { font-size: 0.63rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* ── MAIN ── */
+main { padding: 36px 40px 80px; max-width: 1400px; }
+
+/* ── LEGEND ── */
+.legend {
+  background: var(--blanco);
+  border: 1px solid var(--gris-bdr);
+  border-radius: 10px;
+  padding: 13px 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  align-items: center;
+}
+.legend-label { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-text); margin-right: 4px; }
+.legend-item { display: flex; align-items: center; gap: 7px; font-size: 0.68rem; color: var(--texto); }
+.ldot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── SECTION ── */
+.sec { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; margin-top: 44px; }
+.sec:first-child { margin-top: 0; }
+.sec-num {
+  width: 28px; height: 28px;
+  background: var(--naranja);
+  color: var(--blanco);
+  border-radius: 50%;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.75rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.sec-title { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--oscuro); }
+.sec-sub { font-size: 0.7rem; color: var(--gris-text); }
+
+/* ── TABLE ── */
+.table-wrap {
+  overflow-x: auto;
+  background: var(--blanco);
+  border: 1px solid var(--gris-bdr);
+  border-radius: 12px;
+}
+table { border-collapse: collapse; width: 100%; font-size: 0.72rem; }
+
+.gh td, .gh th { background: var(--naranja-light); border-bottom: 2px solid var(--gris-bdr); vertical-align: middle; padding: 10px 6px; }
+.gh-sede { min-width: 155px; padding: 10px 20px; text-align: left; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gris-text); border-right: 2px solid var(--gris-bdr); background: var(--blanco); }
+.gh-area { text-align: center; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; color: var(--naranja); background: var(--naranja-light) !important; padding: 8px 6px; border-right: 2px solid var(--gris-bdr); white-space: nowrap; }
+.gh-sis { text-align: center; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.68rem; color: var(--cian); background: var(--cian-light) !important; padding: 6px 8px; white-space: normal; line-height: 1.35; max-width: 90px; border-right: 1px solid var(--gris-bdr); }
+.gh-sep { width: 10px; background: var(--gris-bg) !important; border: none !important; }
+
+.sh td, .sh th { border-bottom: 2px solid var(--gris-bdr); padding: 5px 4px; }
+.sh-sede { border-right: 2px solid var(--gris-bdr); background: var(--blanco) !important; }
+.sh-f, .sh-v { text-align: center; font-size: 0.54rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px; color: var(--gris-text); background: var(--naranja-light); }
+.sh-f { border-right: 1px solid var(--gris-bdr); }
+.sh-v { border-right: 2px solid var(--gris-bdr); }
+.sh-sis { text-align: center; font-size: 0.54rem; font-weight: 700; color: var(--cian); background: var(--cian-light); border-right: 1px solid var(--gris-bdr); }
+
+.dr { height: 52px; transition: background 0.1s; }
+.dr:hover td { filter: brightness(0.96); }
+.dr td { border-bottom: 1px solid #EEEEEE; vertical-align: middle; }
+.dr-sede { padding: 0 20px; border-right: 2px solid var(--gris-bdr); white-space: nowrap; }
+.dr-sede-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; color: var(--oscuro); display: block; }
+.dr-sede-sub { font-size: 0.6rem; color: var(--gris-text); }
+
+/* score cells — coloring done via JS inline style */
+.sc {
+  text-align: center;
+  padding: 0;
+  width: 40px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 1rem;
+  cursor: default;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.sc.f { border-right: 1px solid #EEEEEE; }
+.sc.v { border-right: 2px solid var(--gris-bdr); }
+.sc.sis { width: 50px; border-right: 1px solid var(--gris-bdr); }
+.sc.nil { background: #F4F4F4; color: #BBBBBB; font-size: 0.6rem; }
+
+.sep-col { background: var(--gris-bg) !important; border: none !important; width: 10px; }
+
+/* prom row */
+.prom-row td { border-top: 2px solid var(--gris-bdr); }
+.prom-sede {
+  padding: 0 20px;
+  border-right: 2px solid var(--gris-bdr);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gris-text);
+  background: #F9F9F9;
+}
+.prom-sc {
+  text-align: center;
+  font-size: 0.82rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.prom-sc.f { border-right: 1px solid var(--gris-bdr); }
+.prom-sc.v { border-right: 2px solid var(--gris-bdr); }
+.prom-sc.sis { border-right: 1px solid var(--gris-bdr); }
+
+/* ── CARDS ── */
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+.card { background: var(--blanco); border: 1px solid var(--gris-bdr); border-radius: 12px; overflow: hidden; transition: box-shadow 0.15s; }
+.card:hover { box-shadow: 0 6px 24px rgba(232,98,26,0.12); }
+.card-top { background: var(--naranja); padding: 16px 20px 14px; }
+.card-sede-name { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.05rem; color: var(--blanco); }
+.card-sede-person { font-size: 0.65rem; color: rgba(255,255,255,0.7); margin-top: 2px; }
+.card-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
+.cf { display: flex; flex-direction: column; gap: 4px; }
+.cf-label { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris-text); }
+.cf-val { font-size: 0.72rem; color: var(--texto); line-height: 1.6; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 3px; }
+.tag { font-size: 0.62rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; line-height: 1.4; }
+.tag.naranja { background: var(--naranja-light); color: var(--naranja); }
+.tag.cian    { background: var(--cian-light);    color: #007A7D; }
+.tag.gris    { background: #F0F0F0; color: #555; }
+
+/* ── PATRONES ── */
+.patrones-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.patron { background: var(--blanco); border: 1px solid var(--gris-bdr); border-radius: 12px; padding: 20px; transition: box-shadow 0.15s; }
+.patron:hover { box-shadow: 0 4px 16px rgba(232,98,26,0.08); }
+.patron-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+.patron-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.patron-title { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem; color: var(--oscuro); line-height: 1.35; outline: none; }
+.patron-title:focus { color: var(--naranja); }
+.patron-desc { font-size: 0.68rem; color: var(--gris-text); line-height: 1.7; margin-bottom: 12px; width: 100%; border: none; resize: none; background: transparent; font-family: 'Nunito Sans', sans-serif; outline: none; border-bottom: 1px dashed var(--gris-bdr); padding-bottom: 8px; }
+.patron-desc:focus { border-color: var(--naranja); color: var(--texto); }
+.patron-sedes { display: flex; flex-wrap: wrap; gap: 5px; }
+.psede { font-size: 0.6rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; background: var(--naranja-light); color: var(--naranja); }
+.editable-hint { font-size: 0.65rem; color: var(--gris-text); margin-bottom: 14px; }
+.add-patron-btn { margin-top: 14px; background: var(--blanco); border: 2px dashed var(--gris-bdr); color: var(--gris-text); font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.72rem; padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: all 0.15s; width: 100%; text-align: center; }
+.add-patron-btn:hover { border-color: var(--naranja); color: var(--naranja); background: var(--naranja-light); }
+
+/* ── PDF BTN ── */
+.pdf-btn {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  background: var(--naranja);
+  color: var(--blanco);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(232,98,26,0.35);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.15s, box-shadow 0.15s;
+  z-index: 999;
+}
+.pdf-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,98,26,0.45); }
+.pdf-btn:active { transform: translateY(0); }
+
+/* ── PRINT ── */
+@media print {
+  .pdf-btn, nav { display: none !important; }
+  body { background: #fff; }
+  .hero {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* Split table into two for print: areas + sistémicas separately */
+  .table-wrap { overflow: visible !important; border: none !important; border-radius: 0 !important; }
+  table { font-size: 0.62rem; }
+  .gh-sede { min-width: 110px !important; }
+  .sc { width: 30px !important; }
+  .sc.sis { width: 36px !important; }
+  .gh-sis { max-width: 60px !important; font-size: 0.55rem !important; }
+  .cards-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .patrones-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .card, .patron { break-inside: avoid; }
+  main { padding: 20px !important; }
+}
+
+@page { size: A4 landscape; margin: 12mm; }
+
+@media (max-width: 700px) {
+  nav { padding: 0 20px; }
+  .hero { padding: 36px 20px; }
+  main { padding: 28px 20px 60px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">OAJNU <span>CDA 2026</span></div>
+  <div class="nav-subtitle">Diagnóstico interno · 5 sedes</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Estado de la Casa</div>
+  <h1>El Estado de <em>la Casa</em></h1>
+  <p class="hero-sub">OAJNU · Diagnóstico CDA · Reunión anual 2026 · 5 sedes</p>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-n">5</div><div class="hstat-l">Sedes evaluadas</div></div>
+    <div class="hstat"><div class="hstat-n">6</div><div class="hstat-l">Áreas funcionales</div></div>
+    <div class="hstat"><div class="hstat-n">6</div><div class="hstat-l">Dim. sistémicas</div></div>
+  </div>
+</div>
+
+<main>
+
+<div class="legend">
+  <span class="legend-label">Escala →</span>
+  <div class="legend-item"><div class="ldot" style="background:#D94F3D"></div>1 — Sin piso / Agotado</div>
+  <div class="legend-item"><div class="ldot" style="background:#E8903A"></div>2 — Personalizado / Desgastado</div>
+  <div class="legend-item"><div class="ldot" style="background:#D4AA00"></div>3 — Frágil / Al límite</div>
+  <div class="legend-item"><div class="ldot" style="background:#5BAD6F"></div>4 — Estable / Motivado</div>
+  <div class="legend-item"><div class="ldot" style="background:#2E8B57"></div>5 — En desarrollo / Energizado</div>
+</div>
+
+<div class="sec">
+  <div class="sec-num">01</div>
+  <div>
+    <div class="sec-title">Evaluación cuantitativa · Áreas funcionales y dimensiones sistémicas</div>
+  </div>
+</div>
+<div class="table-wrap"><table id="main-table"></table></div>
+
+<div class="sec">
+  <div class="sec-num">02</div>
+  <div><div class="sec-title">Dimensión personal · El habitante de la casa</div></div>
+</div>
+<div class="cards-grid" id="cards-grid"></div>
+
+<div class="sec">
+  <div class="sec-num">03</div>
+  <div><div class="sec-title">Patrones identificados · Para el facilitador</div></div>
+</div>
+<div class="editable-hint">↳ Completá los patrones antes de proyectar este panel. Hacé clic en el texto para editar.</div>
+<div class="patrones-grid" id="patrones-grid"></div>
+<button class="add-patron-btn" onclick="addPatron()">+ Agregar patrón</button>
+
+</main>
+
+<button class="pdf-btn" onclick="window.print()">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+  Descargar PDF
+</button>
+
+<script>
+const SEDES=[
+  {nombre:"Milagros",sede:"Rosario",f_adm:3,v_adm:1,f_com:3,v_com:3,f_fondos:4,v_fondos:3,f_imp:5,v_imp:5,f_fv:5,v_fv:5,f_de:5,v_de:5,s_identidad:4,s_decisiones:3,s_memoria:3,s_voluntariado:4,s_planif:4,s_comuni:4,logro:"Consolidación de FV como actor clave; enfoque de Impacto; reestructuración de Finanzas en proceso; propuestas innovadoras en Comunicación y potencial de DdF.",preocupa:"Finanzas",estado:"Tengo energía y claridad sobre hacia dónde vamos · Estoy motivada pero me falta orden o estructura",tension:"Entre sostener la motivación del voluntariado y no quemar a las personas",necesidad:"Sentirme menos sola en los desafíos · Entender mejor qué se espera de mí desde nacional"},
+  {nombre:"Abril Pedrozo",sede:"Corrientes",f_adm:3,v_adm:4,f_com:2,v_com:3,f_fondos:3,v_fondos:3,f_imp:4,v_imp:4,f_fv:4,v_fv:4,f_de:3,v_de:3,s_identidad:2,s_decisiones:5,s_memoria:4,s_voluntariado:null,s_planif:3,s_comuni:3,logro:"Impacto: portfolios y medición · Finanzas y DdF: profesionalización · Comunicación: cambio de enfoque · FV: muy profesionalizado",preocupa:"La autonomía del CE",estado:"Tengo energía y claridad · Comprometida pero acumulando cansancio por dudas en decisiones",tension:"Entre mantener el orden y los procesos y ser flexible cuando algo no funciona",necesidad:"Sentirme menos sola · Alinear visiones federales y acompañamiento"},
+  {nombre:"Juan Manuel Aranda",sede:"Mendoza",f_adm:3,v_adm:4,f_com:3,v_com:4,f_fondos:2,v_fondos:4,f_imp:4,v_imp:4,f_fv:4,v_fv:4,f_de:4,v_de:4,s_identidad:4,s_decisiones:2,s_memoria:4,s_voluntariado:3,s_planif:3,s_comuni:3,logro:"FV: reestructuración y actualización de base de datos · DdF 24: estructuración · Finanzas: ordenamiento e integración del equipo",preocupa:"Institucionalizar los Agentes de Cambio y el foco en donantes recurrentes; voluntarios adaptándose a un CEA más riguroso",estado:"Comprometido pero acumulando cansancio · Me cuesta delegar",tension:"Entre cuidar el clima del equipo y exigir resultados",necesidad:"Herramienta o metodología concreta · Sentirme menos solo"},
+  {nombre:"Mateo Quinteros",sede:"Córdoba",f_adm:4,v_adm:5,f_com:4,v_com:2,f_fondos:2,v_fondos:1,f_imp:4,v_imp:5,f_fv:3,v_fv:4,f_de:4,v_de:4,s_identidad:3,s_decisiones:5,s_memoria:4,s_voluntariado:null,s_planif:3,s_comuni:3,logro:"Consolidación de procesos de impacto con mediciones válidas para toma de decisiones",preocupa:"El clima organizacional y la experiencia que le estamos brindando al voluntariado",estado:"Tengo energía y claridad · Comprometido pero acumulando cansancio",tension:"Entre sostener la motivación del voluntariado y no quemar a las personas",necesidad:"Saber cómo otra sede resolvió mi problema · Entender qué se espera de mí desde nacional"},
+  {nombre:"Selene Mosconi",sede:"Salta",f_adm:2,v_adm:5,f_com:3,v_com:3,f_fondos:4,v_fondos:4,f_imp:5,v_imp:3,f_fv:3,v_fv:4,f_de:3,v_de:4,s_identidad:2,s_decisiones:5,s_memoria:3,s_voluntariado:3,s_planif:3,s_comuni:2,logro:"DdF: regularización de base de datos y planificación del año · FV: nuevas bases de seguimiento como la de cumpleaños",preocupa:"CE que funcione como equipo sin sobrecarga; formación de perfiles líderes; espacio físico para el MNU",estado:"Tengo energía y claridad · Motivada pero me falta orden o estructura",tension:"Entre sostener la motivación del voluntariado y no quemar a las personas",necesidad:"Herramienta o metodología concreta · Saber cómo otra sede resolvió mi problema"}
+];
+const AREA_NAMES=["Adm. y Finanzas","Comunicación","Des. de Fondos","Gestión de Impacto","Fort. Voluntariado","Dirección Ej."];
+const SIS_NAMES=["Identidad\ny cultura","Toma de\ndecisiones","Memoria\ninstitucional","Sost.\nVoluntariado","Planif. y\nejecución","Comuni.\ninterna"];
+const SIS_KEYS=["s_identidad","s_decisiones","s_memoria","s_voluntariado","s_planif","s_comuni"];
+const SIS_DESCS=[
+  ["Sin recuerdo de la causa","Algunos se identifican, otros no","Identidad compartida pero frágil bajo presión","La causa orienta decisiones","Cultura como activo: atrae, sostiene y guía"],
+  ["Todo depende de la DE","Delegación parcial, decisiones clave en la DE","Roles con autonomía pero límites poco claros","CE con claridad sobre sus autonomías","DE enfocada en estrategia, CE decide con criterio propio"],
+  ["Todo se va con quien se va","Registros desactualizados o perdidos","Se documenta con esfuerzo, sin hábito","Registros accesibles, conocimiento sobrevive al recambio","Aprendizaje institucional sistemático"],
+  ["Alto recambio, nadie se convierte en referente","La mayoría no supera el primer año","Ciclo existente con fricciones","Personas que crecen y recomiendan la organización","Propuesta de valor clara para el voluntarix"],
+  ["Reacción pura, sin planificación","Planes que ceden ante lo urgente","Planificación parcial, falta seguimiento","Plan claro, monitoreado y ajustado","Planificación viva con aprendizajes integrados"],
+  ["Información distorsionada o ausente","Canales unidireccionales","Funciona para lo operativo, lo importante no se habla","Espacios de diálogo reales y seguros","Comunicación como activo: feedback y resolución constructiva"]
+];
+const AREA_KEYS=[["f_adm","v_adm"],["f_com","v_com"],["f_fondos","v_fondos"],["f_imp","v_imp"],["f_fv","v_fv"],["f_de","v_de"]];
+
+// Conditional color scale 1–5
+// 1=red, 2=orange, 3=yellow, 4=light-green, 5=green
+const SCALE_BG  = ["#FADADD","#FDEBD0","#FEF9C3","#D5F5E3","#C8EFD4"];
+const SCALE_FG  = ["#922B21","#A04000","#7D6608","#1E8449","#1A5C38"];
+
+function cellStyle(val) {
+  if (val === null || val === undefined) return null;
+  const i = Math.min(5, Math.max(1, val)) - 1;
+  return `background:${SCALE_BG[i]};color:${SCALE_FG[i]};`;
+}
+
+function avg(vals) {
+  const v = vals.filter(x => x !== null && x !== undefined);
+  return v.length ? (v.reduce((a,b) => a+b, 0) / v.length) : null;
+}
+function avgDisplay(vals) {
+  const a = avg(vals);
+  return a !== null ? a.toFixed(1) : "·";
+}
+// Map avg float to nearest integer for color scale
+function avgStyle(vals) {
+  const a = avg(vals);
+  if (a === null) return "background:#F4F4F4;color:#BBB;";
+  return cellStyle(Math.round(a));
+}
+
+function sc(val, ce, tt) {
+  const style = cellStyle(val);
+  if (!style) return `<td class="sc ${ce} nil" title="${tt}">·</td>`;
+  return `<td class="sc ${ce}" style="${style}" title="${tt}">${val}</td>`;
+}
+
+function buildTable() {
+  const t = document.getElementById("main-table");
+  let h = "";
+  h += `<tr class="gh">
+    <td class="gh-sede" rowspan="2">Sede</td>
+    ${AREA_NAMES.map(n=>`<th class="gh-area" colspan="2">${n}</th>`).join("")}
+    <td class="gh-sep" rowspan="2"></td>
+    ${SIS_NAMES.map(n=>`<th class="gh-sis" rowspan="2">${n.replace("\n","<br>")}</th>`).join("")}
+  </tr>`;
+  h += `<tr class="sh">
+    <td class="sh-sede"></td>
+    ${AREA_NAMES.map(()=>`<td class="sh-f">Func</td><td class="sh-v">Vital</td>`).join("")}
+  </tr>`;
+  SEDES.forEach(s => {
+    h += `<tr class="dr">
+      <td class="dr-sede"><span class="dr-sede-name">${s.sede}</span><span class="dr-sede-sub">${s.nombre}</span></td>
+      ${AREA_KEYS.map(([fk,vk],i) =>
+        sc(s[fk],"f",`Funcionamiento ${AREA_NAMES[i]}: nivel ${s[fk]}`) +
+        sc(s[vk],"v",`Vitalidad ${AREA_NAMES[i]}: nivel ${s[vk]}`)
+      ).join("")}
+      <td class="sep-col"></td>
+      ${SIS_KEYS.map((k,i) => {
+        const val = s[k];
+        const desc = val ? SIS_DESCS[i][val-1] : "Sin dato";
+        return sc(val,"sis",`${SIS_NAMES[i].replace("\n"," ")}: ${desc}`);
+      }).join("")}
+    </tr>`;
+  });
+  // prom row — color-coded
+  h += `<tr class="prom-row">
+    <td class="prom-sede">Promedio red</td>
+    ${AREA_KEYS.map(([fk,vk]) => {
+      const sf = avgStyle(SEDES.map(s=>s[fk]));
+      const sv = avgStyle(SEDES.map(s=>s[vk]));
+      return `<td class="prom-sc f" style="${sf}">${avgDisplay(SEDES.map(s=>s[fk]))}</td>` +
+             `<td class="prom-sc v" style="${sv}">${avgDisplay(SEDES.map(s=>s[vk]))}</td>`;
+    }).join("")}
+    <td class="sep-col"></td>
+    ${SIS_KEYS.map(k => {
+      const ss = avgStyle(SEDES.map(s=>s[k]));
+      return `<td class="prom-sc sis" style="${ss}">${avgDisplay(SEDES.map(s=>s[k]))}</td>`;
+    }).join("")}
+  </tr>`;
+  t.innerHTML = h;
+}
+
+function buildCards() {
+  document.getElementById("cards-grid").innerHTML = SEDES.map(s=>`
+    <div class="card">
+      <div class="card-top">
+        <div class="card-sede-name">${s.sede}</div>
+        <div class="card-sede-person">${s.nombre}</div>
+      </div>
+      <div class="card-body">
+        <div class="cf"><div class="cf-label">Mayor logro reciente</div><div class="cf-val">${s.logro}</div></div>
+        <div class="cf"><div class="cf-label">Lo que más preocupa</div><div class="cf-val">${s.preocupa}</div></div>
+        <div class="cf"><div class="cf-label">Estado como líder</div><div class="tags">${s.estado.split("·").map(t=>`<span class="tag naranja">${t.trim()}</span>`).join("")}</div></div>
+        <div class="cf"><div class="cf-label">Tensión principal</div><div class="tags"><span class="tag gris">${s.tension}</span></div></div>
+        <div class="cf"><div class="cf-label">Necesita llevarse</div><div class="tags">${s.necesidad.split("·").map(t=>`<span class="tag cian">${t.trim()}</span>`).join("")}</div></div>
+      </div>
+    </div>`).join("");
+}
+
+const PATRONES_INIT=[
+  {color:"#D94F3D",titulo:"Desarrollo de Fondos: el área más crítica de la red",desc:"3 de 5 sedes evalúan DdF con funcionamiento ≤3, y Córdoba registra vitalidad 1 — la más baja de todo el panel. Es la dimensión con el promedio más bajo en funcionamiento y la que más aparece vinculada a preocupaciones estructurales.",sedes:["Corrientes","Mendoza","Córdoba"]},
+  {color:"#D94F3D",titulo:"Comunicación: vitalidad baja en varias sedes",desc:"Córdoba reporta vitalidad 2 en Comunicación y múltiples sedes marcan nivel 3 en comunicación interna sistémica. La información circula para lo operativo pero los temas importantes no siempre se hablan abiertamente.",sedes:["Córdoba","Corrientes","Salta"]},
+  {color:"#D4AA00",titulo:"Planificación sistémica: todas en nivel 3",desc:"Las 5 sedes se ubican en nivel 3 en planificación y ejecución estratégica. Se planifica con esfuerzo pero falta seguimiento. Hay margen para compartir herramientas de monitoreo entre sedes.",sedes:["Todas las sedes"]},
+  {color:"#D4AA00",titulo:"Tensión compartida: motivar sin quemar",desc:"3 de 5 líderes identifican la misma tensión: sostener la motivación del voluntariado sin generar sobrecarga. Junto con el cansancio acumulado que mencionan varios, es una señal de riesgo de sustentabilidad humana en la red.",sedes:["Rosario","Córdoba","Salta"]},
+  {color:"#5BAD6F",titulo:"Fortaleza en Gestión de Impacto",desc:"Rosario y Salta tienen funcionamiento 5 en Impacto. Córdoba tiene vitalidad 5. Es el área con mejor desempeño promedio de la red y donde hay aprendizajes exportables, especialmente en medición y portfolios.",sedes:["Rosario","Córdoba","Salta"]},
+  {color:"#5BAD6F",titulo:"Necesidad compartida: sentirse menos solos",desc:"4 de 5 líderes mencionan 'sentirme menos solo/a' entre sus expectativas para estos días. Es la necesidad más frecuente del panel y señala que estos espacios de encuentro tienen un valor que va más allá de lo técnico.",sedes:["Rosario","Corrientes","Mendoza","Córdoba"]},
+];
+
+function renderPatron(p,i){
+  return `<div class="patron" data-idx="${i}">
+    <div class="patron-top">
+      <div class="patron-dot" style="background:${p.color}"></div>
+      <div class="patron-title" contenteditable="true" spellcheck="false">${p.titulo}</div>
+    </div>
+    <textarea class="patron-desc" spellcheck="false" rows="4">${p.desc}</textarea>
+    <div class="patron-sedes">${p.sedes.map(s=>`<span class="psede">${s}</span>`).join("")}</div>
+  </div>`;
+}
+function buildPatrones(){
+  document.getElementById("patrones-grid").innerHTML=PATRONES_INIT.map((p,i)=>renderPatron(p,i)).join("");
+}
+function addPatron(){
+  const g=document.getElementById("patrones-grid");
+  const div=document.createElement("div");
+  div.innerHTML=renderPatron({color:"#D4AA00",titulo:"Nuevo patrón",desc:"Describí el patrón identificado...",sedes:[]},g.children.length);
+  g.appendChild(div.firstElementChild);
+  g.lastElementChild.querySelector(".patron-title").focus();
+}
+
+buildTable();buildCards();buildPatrones();
+</script>
+</body>
+</html>
