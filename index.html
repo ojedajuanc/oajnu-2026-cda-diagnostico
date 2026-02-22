@@ -438,7 +438,6 @@ function buildTable() {
     ${SIS_NAMES.map(n=>`<th class="gh-sis" rowspan="2">${n.replace("\n","<br>")}</th>`).join("")}
   </tr>`;
   h += `<tr class="sh">
-    <td class="sh-sede"></td>
     ${AREA_NAMES.map(()=>`<td class="sh-f">Func</td><td class="sh-v">Vital</td>`).join("")}
   </tr>`;
   SEDES.forEach(s => {
